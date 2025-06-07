@@ -1,6 +1,8 @@
 package com.github.m4qina.mc.mod.introduction;
 
+import com.github.m4qina.mc.mod.introduction.block.IntroductionBlocks;
 import com.github.m4qina.mc.mod.introduction.item.IntroductionItems;
+import com.github.m4qina.mc.mod.introduction.item.IntroductionTabs;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -32,6 +34,12 @@ public class IntroductionMod {
 
         // アイテムレジストリをイベントバスに登録
         IntroductionItems.register(modEventBus);
+
+        // クリエイティブタブをイベントバスに登録
+        IntroductionTabs.register(modEventBus);
+
+        // ブロックレジストリをイベントバスに登録
+        IntroductionBlocks.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
