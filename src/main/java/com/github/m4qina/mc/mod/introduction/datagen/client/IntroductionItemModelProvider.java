@@ -1,4 +1,4 @@
-package com.github.m4qina.mc.mod.introduction.datagen;
+package com.github.m4qina.mc.mod.introduction.datagen.client;
 
 import com.github.m4qina.mc.mod.introduction.IntroductionMod;
 import com.github.m4qina.mc.mod.introduction.item.IntroductionItems;
