@@ -1,6 +1,11 @@
 package com.github.m4qina.mc.mod.introduction;
 
+import com.github.m4qina.mc.mod.introduction.block.IntroductionBlocks;
+import com.github.m4qina.mc.mod.introduction.item.IntroductionItems;
+import com.github.m4qina.mc.mod.introduction.item.IntroductionTabs;
 import com.mojang.logging.LogUtils;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -27,6 +32,15 @@ public class IntroductionMod {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
+        // アイテムレジストリをイベントバスに登録
+        IntroductionItems.register(modEventBus);
+
+        // クリエイティブタブをイベントバスに登録
+        IntroductionTabs.register(modEventBus);
+
+        // ブロックレジストリをイベントバスに登録
+        IntroductionBlocks.register(modEventBus);
+
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -40,6 +54,10 @@ public class IntroductionMod {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(IntroductionItems.RAW_ORIHALCON);
+            event.accept(IntroductionItems.ORIHALCON_INGOT);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
